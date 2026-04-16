@@ -16,6 +16,9 @@
     <type name="Alekseon\AlekseonEav\Api\Data\AttributeInterface">
         <plugin name="Alekseon_AlekseonEav::AttributeDefaultValueProviderPlugin" type="Alekseon\AlekseonEav\Plugin\AttributeDefaultValueProviderPlugin" sortOrder="100" />
     </type>
+    <type name="Alekseon\AlekseonEav\Model\ResourceModel\EntityInterface">
+        <plugin name="Alekseon_AlekseonEav::LoadSystemValuesPlugin" type="Alekseon\AlekseonEav\Plugin\LoadSystemValuesPlugin" sortOrder="100" />
+    </type>
     <type name="Alekseon\AlekseonEav\Model\Attribute\InputTypeRepository">
         <arguments>
             <argument name="frontendInputTypes" xsi:type="array">
