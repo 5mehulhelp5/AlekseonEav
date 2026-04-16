@@ -31,6 +31,10 @@ if ($block->canDisplayUseDefault() && $block->usedDefault()) {
     $element->setDisabled(true);
 }
 
+if ($block->canDisplayUseSystemValue() && $block->usedSystemValue()) {
+    $element->setDisabled(true);
+}
+
 ?>
 
 <?php if (!$element->getNoDisplay()): ?>
@@ -52,14 +56,30 @@ if ($block->canDisplayUseDefault() && $block->usedDefault()) {
             <div class="field-service">
                 <?php if ($block->canDisplayUseDefault()): ?>
                     <label for="<?= $element->getHtmlId() ?>_default" class="choice use-default">
-                        <input <?php if ($element->getReadonly()):?> disabled="disabled"<?php endif; ?> type="checkbox"
-                                name="use_default[]"
-                                class="use-default-control"
-                                id="<?= $element->getHtmlId() ?>_default"
+                        <input <?php if ($element->getReadonly()):?> disabled="disabled"<?php endif; ?>
+                            type="checkbox"
+                            name="use_default[]"
+                            class="use-default-control"
+                            id="<?= $element->getHtmlId() ?>_default"
                             <?php if ($block->usedDefault()): ?> checked="checked"<?php endif; ?>
-                                onclick="<?= /* @escapeNotVerified */ $elementToggleCode ?>"
-                                value="<?= /* @escapeNotVerified */ $block->getAttributeCode() ?>"/>
+                            onclick="<?= /* @escapeNotVerified */ $elementToggleCode ?>"
+                            value="<?= /* @escapeNotVerified */ $block->getAttributeCode() ?>"
+                        />
                         <span class="use-default-label"><?= /* @escapeNotVerified */ __('Use Default Value') ?></span>
+                    </label>
+                <?php endif ?>
+                <?php if ($block->canDisplayUseSystemValue()): ?>
+                    <label for="<?= $element->getHtmlId() ?>_default" class="choice use-default">
+                        <input <?php if ($element->getReadonly()):?> disabled="disabled"<?php endif; ?>
+                            type="checkbox"
+                            name="use_default[]"
+                            class="use-default-control"
+                            id="<?= $element->getHtmlId() ?>_default"
+                            <?php if ($block->usedSystemValue()): ?> checked="checked"<?php endif; ?>
+                            onclick="<?= /* @escapeNotVerified */ $elementToggleCode ?>"
+                            value="<?= /* @escapeNotVerified */ $block->getAttributeCode() ?>"
+                        />
+                        <span class="use-default-label"><?= /* @noEscape  */ $block->getUseSystemValueLabel() ?></span>
                     </label>
                 <?php endif ?>
             </div>
