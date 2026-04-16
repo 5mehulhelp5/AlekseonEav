@@ -14,6 +14,7 @@ class LoadSystemValuesPlugin
     /**
      * @param \Alekseon\AlekseonEav\Model\ResourceModel\EntityInterface $entity
      * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterLoad(
         \Alekseon\AlekseonEav\Model\ResourceModel\EntityInterface $subject,

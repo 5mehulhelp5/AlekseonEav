@@ -426,6 +426,7 @@ abstract class Entity extends \Magento\Framework\Model\ResourceModel\Db\Abstract
      * @return mixed
      * @throws LocalizedException
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function prepareValueForSave(
         EntityInterface $object,
