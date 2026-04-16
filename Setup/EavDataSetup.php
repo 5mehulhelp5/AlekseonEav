@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Alekseon\AlekseonEav\Setup;
 
-use Magento\Framework\DB\Ddl\Table;
-
 /**
  * Class SchemaSetup
  * @package Alekseon\AlekseonEav\Setup

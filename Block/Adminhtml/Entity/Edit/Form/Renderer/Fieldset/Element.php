@@ -22,7 +22,7 @@ class Element extends \Magento\Backend\Block\Widget\Form\Renderer\Fieldset\Eleme
     /**
      * Retrieve data object related with form
      *
-     * @return \Magento\Catalog\Model\Product || \Magento\Catalog\Model\Category
+     * @return \Alekseon\AlekseonEav\Api\Data\EntityInterface
      */
     public function getDataObject()
     {
@@ -96,6 +96,9 @@ class Element extends \Magento\Backend\Block\Widget\Form\Renderer\Fieldset\Eleme
     {
         $attributeCode = $this->getAttribute()->getAttributeCode();
         $defaultValue = $this->getDataObject()->getAttributeDefaultValue($attributeCode);
+        if ($defaultValue === null && $this->getDataObject()->getOrigData($attributeCode) === null) {
+            return true;
+        }
         if ($this->getElement()->getValue() != $defaultValue &&
             $this->getDataObject()->getStoreId() != Store::DEFAULT_STORE_ID
         ) {
@@ -103,6 +106,51 @@ class Element extends \Magento\Backend\Block\Widget\Form\Renderer\Fieldset\Eleme
         }
 
         return true;
+    }
+
+    /**
+     * Check "Use system" checkbox display availability
+     *
+     * @return bool
+     */
+    public function canDisplayUseSystemValue()
+    {
+        if ($attribute = $this->getAttribute()) {
+            if ($this->getDataObject()->getStoreId()) {
+                return false;
+            }
+            $systemValues = $this->getDataObject()->getSystemValues();
+            if (isset($systemValues[$attribute->getAttributeCode()])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getUseSystemValueLabel()
+    {
+        $attribute = $this->getAttribute();
+        $systemValues = $this->getDataObject()->getSystemValues();
+        if (isset($systemValues[$attribute->getAttributeCode()]['use_label'])) {
+            return $systemValues[$attribute->getAttributeCode()]['use_label'];
+        }
+        return __('Use system value');
+    }
+
+    /**
+     * @return bool
+     */
+    public function usedSystemValue()
+    {
+        $attribute = $this->getAttribute();
+        if (!$this->getDataObject()->getId()) {
+            return true;
+        }
+        if ($this->getDataObject()->getOrigData($attribute->getAttributeCode()) === null && $this->canDisplayUseSystemValue()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

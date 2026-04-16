@@ -156,4 +156,20 @@ abstract class Entity extends \Magento\Framework\Model\AbstractModel implements 
         }
         return $this;
     }
+
+    /**
+     * Get system Values
+     *
+     * @return array
+     */
+    public function getSystemValues()
+    {
+        return [
+            //'attribute_code' => [
+            //    'provider' => \Alekseon\AlekseonEav\Model\Attribute\SystemValueProvider\ScopeConfigValue::class,
+            //    'use_label' => '', // optional
+            //    'params' => ['path' => ''] // optional
+            //],
+        ];
+    }
 }
