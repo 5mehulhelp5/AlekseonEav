@@ -36,17 +36,22 @@
                 </thead>
                 <tbody data-role="options-container"></tbody>
                 <tfoot>
-                <?php if (!$this->isReadOnly()): ?>
                     <tr>
                         <th colspan="<?= (int) $columnsCounter ?>" class="col-actions-add">
-                            <button id="add_new_option_button" data-action="add_new_row"
-                                    title="<?= $block->escapeHtml(__('Add Option')) ?>"
-                                    type="button" class="action- scalable add">
-                                <span><?= $block->escapeHtml(__('Add Option')) ?></span>
-                            </button>
+                            <?php if (!$this->isReadOnly()): ?>
+                                <button id="add_new_option_button" data-action="add_new_row"
+                                        title="<?= $block->escapeHtml(__('Add Option')) ?>"
+                                        type="button" class="action- scalable add">
+                                    <span><?= $block->escapeHtml(__('Add Option')) ?></span>
+                                </button>
+                        <?php endif ?>
+                        <button id="reset_default_options_option_button"
+                                title="<?= $block->escapeHtml(__('Reset Is Default')) ?>"
+                                type="button" class="action- scalable reset">
+                            <span><?= $block->escapeHtml(__('Reset Is Default')) ?></span>
+                        </button>
                         </th>
                     </tr>
-                <?php endif ?>
                 </tfoot>
             </table>
         </div>
