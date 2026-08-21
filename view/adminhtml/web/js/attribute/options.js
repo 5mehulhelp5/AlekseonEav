@@ -44,6 +44,9 @@ define([
                     element.hide();
                 }
             },
+            reset: function () {
+                $('input[name="default[]"]').prop('checked', false);
+            },
             render: function (data) {
                 for (var i = 0; i < data.length; i++) {
                     this.add(data[i]);
@@ -64,6 +67,14 @@ define([
             $('#add_new_option_button').click(
                 function () {
                     attributeOption.add({});
+                }
+            );
+        }
+
+        if ($('#reset_default_options_option_button')) {
+            $('#reset_default_options_option_button').click(
+                function () {
+                    attributeOption.reset();
                 }
             );
         }

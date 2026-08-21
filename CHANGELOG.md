@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 ### Added
 
+## [Unreleased]
+### Added
+- "Reset Is Default" button in attribute options
+### Fixed
+- save default option provider when default option is selected
+
 ## [101.2.22] - 2026-02-19
 - fix update attribute frontend labels
 
